@@ -1,0 +1,61 @@
+{
+  "name": "react-challenge-01",
+  "version": "1.0.0",
+  "description": "Reto 01: Curso Práctico de React JS",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --mode production",
+    "start": "webpack-dev-server --open --mode development",
+    "server": "json-server locations.json",
+    "format": "prettier --write '{*.js,src/**/*.{js,jsx}}'",
+    "lint": "eslint src/ --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gndx/react-challenge-01.git"
+  },
+  "keywords": [
+    "React",
+    "Webpack",
+    "Babel",
+    "JavaScript"
+  ],
+  "author": "Oscar Barajas <oscar@gndx.dev>",
+  "license": "MIT",
+  "dependencies": {
+    "@babel/core": "^7.6.2",
+    "@babel/preset-env": "^7.6.2",
+    "@babel/preset-react": "^7.0.0",
+    "babel-eslint": "^10.0.3",
+    "babel-loader": "^8.0.6",
+    "css-loader": "^3.2.0",
+    "google-maps-react": "^2.0.2",
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^3.2.0",
+    "mini-css-extract-plugin": "^0.7.0",
+    "react": "^16.10.1",
+    "react-dom": "^16.10.1",
+    "style-loader": "^0.23.1",
+    "stylus": "^0.54.7",
+    "stylus-loader": "^3.0.2",
+    "webpack": "^4.41.0",
+    "webpack-cli": "^3.3.9"
+  },
+  "devDependencies": {
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb": "^17.1.1",
+    "eslint-config-prettier": "^4.3.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-prettier": "^3.1.1",
+    "eslint-plugin-react": "^7.14.3",
+    "json-server": "^0.16.1",
+    "prettier": "^1.18.2",
+    "webpack-dev-server": "^3.8.1"
+  },
+  "bugs": {
+    "url": "https://github.com/gndx/react-challenge-01/issues"
+  },
+  "homepage": "https://github.com/gndx/react-challenge-01#readme"
+}

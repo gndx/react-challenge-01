@@ -1,0 +1,4 @@
+# Change this to set the number of comments the watcher should comment on a given PR.
+commentLimit: 20
+# The message the bot will post on any lines containing a eslint disable comment.
+commentMessage: Por favor no deshabilites la reglas de ESlint :pray:

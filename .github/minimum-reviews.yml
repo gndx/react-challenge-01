@@ -1,0 +1,6 @@
+# Number of reviews required to mark the pull request as valid
+reviewsUntilReady: 1
+changesThreshold: 20
+readyMessage: 'No pending reviews'
+notReadyMessage: 'Pending review approvals'
+notReadyState: 'pending'

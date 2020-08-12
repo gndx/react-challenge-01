@@ -1,0 +1,4 @@
+requestInfoReplyComment: >
+  Es importante ofrecer información de tu Pull Request.
+requestInfoLabelToAdd: needs-more-info
+checkPullRequestTemplate: true
