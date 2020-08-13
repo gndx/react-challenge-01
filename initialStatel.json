@@ -1,0 +1,19 @@
+{
+  "initalState": {
+    "mylist": [],
+    "trends": [
+      {
+        "id":0,
+        "venueLat": 6.42375,
+        "venueLon": -66.58973,
+        "venueName": "Platzi HQ sede venezuela"
+      },
+      {
+        "id":1,
+        "venueLat": 4.6560716,
+        "venueLon": -74.0595918,
+        "venueName": "Platzi HQ CDMX sede bogota"
+      }
+    ]
+  }
+}
