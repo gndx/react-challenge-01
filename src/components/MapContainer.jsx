@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
+import { Map, InfoWindow, GoogleApiWrapper, Marker } from 'google-maps-react';
 import '../styles/containers/Button.css';
 
 class MapContainer extends Component {
@@ -8,9 +8,19 @@ class MapContainer extends Component {
     super(props);
     this.state = {
       show: false,
+      showingInfoWindow: false,
+      activeMarker: {},
+      selectedPlace: {},
     }
     this.handleViewMap = () => {
       this.setState({ show: !this.state.show })
+    }
+    this.handleMarkerClick=(props, marker,e)=>{
+      this.setState({
+        selectedPlace: props,
+        activeMarker: marker,
+        showingInfoWindow: true,
+      })
     }
   }
 
@@ -27,13 +37,22 @@ class MapContainer extends Component {
             {
               this.props.markers.map(marker => (
                   <Marker
-                    position={{ lat: marker.venueLat, lng: marker.venueLon }}
                     key={marker.id}
                     name={marker.venueName}
+                    position={{ lat: marker.venueLat, lng: marker.venueLon }}
+                    onClick={this.handleMarkerClick}
                   />
                 )
               )
             }
+            <InfoWindow 
+              marker={this.state.activeMarker}
+              visible={this.state.showingInfoWindow}
+            >
+              <div>
+                <h1>{this.state.selectedPlace.name}</h1>
+              </div>
+            </InfoWindow>
           </Map>
         </>
       );
