@@ -1,0 +1,21 @@
+.style__button-hide{
+  padding: 8px;
+  color: white;
+  background-color: aqua;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  border-radius: 3px;
+  margin: 5px 4.6em;
+}
+.style__button-show{
+   padding: 8px;
+   color: white;
+   background-color: green;
+   border: none;
+   cursor: pointer;
+   outline: none;
+   border-radius: 3px;
+   margin: 5px 4.6em;
+
+}
