@@ -1,19 +1,26 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
+import './Styles/Button.css'
 
 export const MapContainer= class extends React.PureComponent{
   
   state={
-   show: false,
+    show:false
+  }
+
+  handleClick=()=>{
+    const {show}=this.state;
+    this.setState({show:!show})
+    console.log(show);
   }
 
   render(){
-
     const {google}= this.props;
-    [show, setShow] = useState(false);
+    const {show}=this.state;
 
     return (
       <>
+        {show && (
         <Map
           google={google}
           zoom={5}
@@ -23,7 +30,15 @@ export const MapContainer= class extends React.PureComponent{
             position={{ lat: 19.4267261, lng: -99.1718706 }}
           />
         </Map>
-        <button type='button'>Ocultar/ver mapa</button>
+      )}
+        <button
+          className='button'
+          type='button'
+          onClick={this.handleClick}
+        >
+          Ocultar/ver mapa
+
+        </button>
       </>
     );
   }
