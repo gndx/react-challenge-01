@@ -4,19 +4,45 @@ import './Styles/Button.css'
 
 export const MapContainer= class extends React.PureComponent{
   
+
   state={
-    show:false
+    show:false,
+    data: undefined
+  }
+
+  componentDidMount(){
+    // eslint-disable-next-line no-undef
+    fetch('http://localhost:3000/locations')
+      .then(res=>res.json())
+      .then(json=>this.setState({data:json}));
   }
 
   handleClick=()=>{
     const {show}=this.state;
     this.setState({show:!show})
-    console.log(show);
   }
+
+  
+/*
+  fetchData=()=>{
+      fetch('http://localhost:3000/locations')
+      .then(function(response){
+        return response.json();
+      })
+      .then(function(myJson) {
+        console.log(myJson);
+      });
+  } */
+/*
+  const fetchData=async()=>{
+    const response= await fetch('http://localhost:3000/locations');
+    const dat=await response.json();
+    console.log(dat);
+  } */
 
   render(){
     const {google}= this.props;
-    const {show}=this.state;
+    const {show, data}=this.state;
 
     return (
       <>
@@ -26,12 +52,12 @@ export const MapContainer= class extends React.PureComponent{
           zoom={4}
           initialCenter={{ lat: 19.5943885, lng: -97.9526044 }}
         >
-          <Marker
-            position={{ lat: 19.4267261, lng: -99.1718706 }}
-          />
-          <Marker
-            position={{ lat: 4.6560716, lng: -74.0595918 }}
-          />
+          {data.map(e=>(
+            <Marker
+              key={e.venueName}
+              position={{ lat: e.venueLat, lng: e.venueLon}}
+            />
+          ))}
         </Map>
       )}
         <button
