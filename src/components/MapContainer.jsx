@@ -1,5 +1,5 @@
 import React from 'react';
-import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
+import { Map, GoogleApiWrapper, Marker , InfoWindow } from 'google-maps-react';
 import './Styles/Button.css'
 
 export const MapContainer= class extends React.PureComponent{
@@ -7,7 +7,10 @@ export const MapContainer= class extends React.PureComponent{
 
   state={
     show:false,
-    data: undefined
+    data: undefined,
+    showingInfoWindow: false,
+    activeMarker: {},
+    selectedPlace: {},
   }
 
   componentDidMount(){
@@ -22,27 +25,29 @@ export const MapContainer= class extends React.PureComponent{
     this.setState({show:!show})
   }
 
-  
-/*
-  fetchData=()=>{
-      fetch('http://localhost:3000/locations')
-      .then(function(response){
-        return response.json();
-      })
-      .then(function(myJson) {
-        console.log(myJson);
-      });
-  } */
-/*
-  const fetchData=async()=>{
-    const response= await fetch('http://localhost:3000/locations');
-    const dat=await response.json();
-    console.log(dat);
-  } */
+  handleClickMarker = (marker, e ) =>{
+    this.setState({
+      selectedPlace: e,
+      activeMarker: null,
+      showingInfoWindow: true
+    });
+    console.log(e);
+    console.log(this.state.activeMarker);
+  }
+
+    handleClickMap = () => {
+      const {showingInfoWindow}= this.state
+      if (showingInfoWindow) {
+        this.setState({
+          showingInfoWindow: false,
+          activeMarker: null
+        })
+      }
+    };
 
   render(){
     const {google}= this.props;
-    const {show, data}=this.state;
+    const {show, data, activeMarker, showingInfoWindow, selectedPlace}=this.state;
 
     return (
       <>
@@ -51,13 +56,24 @@ export const MapContainer= class extends React.PureComponent{
           google={google}
           zoom={4}
           initialCenter={{ lat: 19.5943885, lng: -97.9526044 }}
+          onClick={this.handleClickMap}
         >
           {data.map(e=>(
             <Marker
               key={e.venueName}
               position={{ lat: e.venueLat, lng: e.venueLon}}
+              onClick={event =>this.handleClickMarker(event, e)}
+              name={e.venueName}
             />
           ))}
+          <InfoWindow 
+            marker={activeMarker}
+            visible={showingInfoWindow}
+          >
+            <div>
+              <h1>{selectedPlace.venueName}</h1>
+            </div>
+          </InfoWindow>
         </Map>
       )}
         <button
@@ -66,7 +82,6 @@ export const MapContainer= class extends React.PureComponent{
           onClick={this.handleClick}
         >
           Ocultar/ver mapa
-
         </button>
       </>
     );
