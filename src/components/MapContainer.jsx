@@ -25,14 +25,12 @@ export const MapContainer= class extends React.PureComponent{
     this.setState({show:!show})
   }
 
-  handleClickMarker = (marker, e ) =>{
+  handleClickMarker = (e, marker ) =>{
     this.setState({
       selectedPlace: e,
-      activeMarker: null,
+      activeMarker:marker,
       showingInfoWindow: true
     });
-    console.log(e);
-    console.log(this.state.activeMarker);
   }
 
     handleClickMap = () => {
@@ -47,7 +45,7 @@ export const MapContainer= class extends React.PureComponent{
 
   render(){
     const {google}= this.props;
-    const {show, data, activeMarker, showingInfoWindow, selectedPlace}=this.state;
+    const {show, data, showingInfoWindow, selectedPlace, activeMarker}=this.state;
 
     return (
       <>
@@ -62,7 +60,7 @@ export const MapContainer= class extends React.PureComponent{
             <Marker
               key={e.venueName}
               position={{ lat: e.venueLat, lng: e.venueLon}}
-              onClick={event =>this.handleClickMarker(event, e)}
+              onClick={this.handleClickMarker}
               name={e.venueName}
             />
           ))}
@@ -71,7 +69,7 @@ export const MapContainer= class extends React.PureComponent{
             visible={showingInfoWindow}
           >
             <div>
-              <h1>{selectedPlace.venueName}</h1>
+              <h1>{selectedPlace.name}</h1>
             </div>
           </InfoWindow>
         </Map>
