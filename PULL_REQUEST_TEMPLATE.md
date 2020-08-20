@@ -3,7 +3,7 @@
 Solución al reto 01 de React
 
 Nombre: María Angélica Pérez Gutiérrez
-Usuario Platzi:
+Usuario Platzi:Maria_PerezG
 
 ## Reto:
 
