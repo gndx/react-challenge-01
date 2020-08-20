@@ -2,11 +2,12 @@
 
 Solución al reto 01 de React
 
-Nombre:
-Usuario Platzi:
+Nombre: María Angélica Pérez Gutiérrez
+Usuario Platzi:Maria_PerezG
 
 ## Reto:
-  - [ ] Primer problema
-  - [ ] Segundo problema
-  - [ ] Tercer problema
-  - [ ] Cuarto Problema (Opcional)
+
+- [x] Primer problema
+- [x] Segundo problema
+- [x] Tercer problema
+- [x] Cuarto Problema (Opcional)
