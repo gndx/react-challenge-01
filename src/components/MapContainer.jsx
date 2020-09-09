@@ -1,5 +1,5 @@
 import React from 'react';
-import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
+import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
 import './MapContainer.styl';
 
 class MapContainer extends React.Component {
@@ -7,8 +7,33 @@ class MapContainer extends React.Component {
     super(props);
     this.state = {
       show: false,
+      showingInfoWindow: false,
+      activeMarker: {},
+      selectedPlace: {},
     };
     this.handleShowClick = this.handleShowClick.bind(this);
+    this.handleMarkerClick = this.handleMarkerClick.bind(this);
+    this.handleMapClicked = this.handleMapClicked.bind(this);
+  }
+
+  handleMarkerClick(props, marker, e) {
+    this.setState(state => ({
+      ...state,
+      selectedPlace: props,
+      activeMarker: marker,
+      showingInfoWindow: true,
+    }));
+  }
+
+  handleMapClicked(props) {
+    const { showingInfoWindow } = this.state;
+    if (showingInfoWindow) {
+      this.setState(state => ({
+        ...state,
+        showingInfoWindow: false,
+        activeMarker: null,
+      }));
+    }
   }
 
   handleShowClick() {
@@ -18,7 +43,7 @@ class MapContainer extends React.Component {
   }
 
   render() {
-    const { show } = this.state;
+    const { show, activeMarker, showingInfoWindow, selectedPlace } = this.state;
     const { google, locations } = this.props;
     return (
       <>
@@ -30,10 +55,18 @@ class MapContainer extends React.Component {
           >
             {locations.map(location => (
               <Marker
+                name={location.venueName}
                 key={location.venueName}
+                onClick={this.handleMarkerClick}
                 position={{ lat: location.venueLat, lng: location.venueLon }}
               />
             ))}
+
+            <InfoWindow marker={activeMarker} visible={showingInfoWindow}>
+              <div>
+                <h1>{selectedPlace.name}</h1>
+              </div>
+            </InfoWindow>
           </Map>
         )}
         {show ? (
