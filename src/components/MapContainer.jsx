@@ -2,23 +2,6 @@ import React from 'react';
 import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
 import './MapContainer.styl';
 
-const markers = [
-  {
-    id: 1,
-    pos: {
-      lat: 4.6560716,
-      lng: -74.0595918,
-    },
-  },
-  {
-    id: 2,
-    pos: {
-      lat: 19.4267261,
-      lng: -99.1718706,
-    },
-  },
-];
-
 class MapContainer extends React.Component {
   constructor(props) {
     super(props);
@@ -36,7 +19,7 @@ class MapContainer extends React.Component {
 
   render() {
     const { show } = this.state;
-    const { google } = this.props;
+    const { google, locations } = this.props;
     return (
       <>
         {show && (
@@ -45,8 +28,11 @@ class MapContainer extends React.Component {
             zoom={5}
             initialCenter={{ lat: 19.5943885, lng: -97.9526044 }}
           >
-            {markers.map(marker => (
-              <Marker key={marker.id} position={marker.pos} />
+            {locations.map(location => (
+              <Marker
+                key={location.venueName}
+                position={{ lat: location.venueLat, lng: location.venueLon }}
+              />
             ))}
           </Map>
         )}
