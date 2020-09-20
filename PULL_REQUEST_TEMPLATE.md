@@ -2,11 +2,11 @@
 
 Solución al reto 01 de React
 
-Nombre:
-Usuario Platzi:
+Nombre: Alfonso Neil Jiménez Casallas
+Usuario Platzi: @alfonsoneiljimenez
 
 ## Reto:
-  - [ ] Primer problema
+  - [ X ] Primer problema
   - [ ] Segundo problema
   - [ ] Tercer problema
   - [ ] Cuarto Problema (Opcional)
