@@ -6,15 +6,28 @@ class MapContainer extends Component {
 	constructor(props){
 		super(props);
 		this.state = {
-			show: false
+			show: false,
+			locations: []
 		};
+		
 		this.showHideMap =()=>{
 			this.setState({show:!this.state.show});
 		};
 	}
 	
+	componentDidMount(){
+			fetch('http://localhost:3000/locations')
+			   .then(res=>res.json())
+			   .then((result) => {
+                       this.setState({
+                          locations: result
+                       });
+                });
+	}
+	
    render(){
-	   switch(this.state.show){
+	   const{show, locations} = this.state;
+	   switch(show){
 		   case true:
 		      	     return (
 					    <>
@@ -24,16 +37,13 @@ class MapContainer extends Component {
                            zoom={5}
                            initialCenter={{ lat: 19.5943885, lng: -97.9526044 }}
                         >
-                           <Marker
-						      title={'Platzi HQ CDMX'}
-						      name={'Platzi HQ CDMX'}
-                              position={{ lat: 19.4267261, lng: -99.1718706 }}
-                           />
-						   <Marker
-						      title={'Platzi HQ Bogota'}
-						      name={'Platzi HQ Bogota'}
-                              position={{ lat: 4.6560716, lng: -74.0595918 }}
-                           />
+							{locations.map(l => (
+                               <Marker key={l.venueName}
+						          title={l.venueName}
+						          name={l.venueName}
+                                  position={{ lat: l.venueLat, lng: l.venueLon }}
+                               />
+                            ))}
                         </Map>
 						</>
 	                );
