@@ -1,5 +1,5 @@
 import React , { Component } from 'react';
-import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
+import { Map, InfoWindow, GoogleApiWrapper, Marker } from 'google-maps-react';
 
 class MapContainer extends Component {
 	
@@ -7,11 +7,22 @@ class MapContainer extends Component {
 		super(props);
 		this.state = {
 			show: false,
-			locations: []
+			locations: [],
+			showingInfoWindow: false,
+            activeMarker: {},
+            selectedPlace: {},
 		};
 		
 		this.showHideMap =()=>{
 			this.setState({show:!this.state.show});
+		};
+		
+		this.onMarkerClick =(props, marker, e)=>{
+			this.setState({
+			   showingInfoWindow: true,
+			   activeMarker:marker,
+			   selectedPlace: props,
+			})
 		};
 	}
 	
@@ -26,7 +37,7 @@ class MapContainer extends Component {
 	}
 	
    render(){
-	   const{show, locations} = this.state;
+	   const{show, locations, showingInfoWindow, activeMarker, selectedPlace} = this.state;
 	   switch(show){
 		   case true:
 		      	     return (
@@ -39,11 +50,19 @@ class MapContainer extends Component {
                         >
 							{locations.map(l => (
                                <Marker key={l.venueName}
-						          title={l.venueName}
 						          name={l.venueName}
                                   position={{ lat: l.venueLat, lng: l.venueLon }}
+								  onClick={this.onMarkerClick}
                                />
                             ))}
+							<InfoWindow
+                                  marker={activeMarker}
+                                  visible={showingInfoWindow}
+							>
+                                  <div>
+                                     <h1>{selectedPlace.name}</h1>
+                                  </div>
+                            </InfoWindow>
                         </Map>
 						</>
 	                );
