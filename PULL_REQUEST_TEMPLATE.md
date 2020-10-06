@@ -2,11 +2,12 @@
 
 Solución al reto 01 de React
 
-Nombre:
-Usuario Platzi:
+Nombre: Adriana Ardila
+Usuario Platzi: @ardila_adri
 
 ## Reto:
-  - [ ] Primer problema
-  - [ ] Segundo problema
-  - [ ] Tercer problema
-  - [ ] Cuarto Problema (Opcional)
+
+- [x] Primer problema
+- [x] Segundo problema
+- [x] Tercer problema
+- [ ] Cuarto Problema (Opcional)
