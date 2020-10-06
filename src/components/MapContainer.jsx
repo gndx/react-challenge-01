@@ -7,7 +7,18 @@ class MapContainer extends Component {
     super(props);
     this.state = {
       show: false,
+      locations: [],
     };
+  }
+
+  componentDidMount() {
+    fetch('http://localhost:3000/locations')
+      .then(resolve => resolve.json())
+      .then(result => {
+        this.setState({
+          locations: result,
+        });
+      });
   }
 
   handleClick = () => {
@@ -15,8 +26,7 @@ class MapContainer extends Component {
   };
 
   render() {
-    //destruturación
-    const { show } = this.state;
+    const { show, locations } = this.state;
     const { google } = this.props;
     switch (show) {
       case true:
@@ -34,14 +44,14 @@ class MapContainer extends Component {
               zoom={5}
               initialCenter={{ lat: 19.5943885, lng: -97.9526044 }}
             >
-              <Marker
-                title="Platzi HQ México"
-                position={{ lat: 19.4267261, lng: -99.1718706 }}
-              />
-              <Marker
-                title="Platzi HQ Bogotá"
-                position={{ lat: 4.6560716, lng: -74.0595918 }}
-              />
+              {locations.map(l => (
+                <Marker
+                  key={l.venueName}
+                  title={l.venueName}
+                  name={l.venueName}
+                  position={{ lat: l.venueLat, lng: l.venueLon }}
+                />
+              ))}
             </Map>
           </>
         );
