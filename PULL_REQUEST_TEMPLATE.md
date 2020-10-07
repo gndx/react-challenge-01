@@ -2,11 +2,11 @@
 
 Solución al reto 01 de React
 
-Nombre:
-Usuario Platzi:
+Nombre: Viviana Soto
+Usuario Platzi: Vivi Soto
 
 ## Reto:
-  - [ ] Primer problema
-  - [ ] Segundo problema
+  - [x] Primer problema
+  - [x] Segundo problema
   - [ ] Tercer problema
   - [ ] Cuarto Problema (Opcional)

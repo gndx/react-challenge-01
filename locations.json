@@ -1,11 +1,13 @@
 {
   "locations": [
     {
+      "id": 1,
       "venueLat": 19.42672619,
       "venueLon": -99.1718706,
       "venueName": "Platzi HQ CDMX"
     },
     {
+      "id": 2,
       "venueLat": 4.6560716,
       "venueLon": -74.0595918,
       "venueName": "Platzi HQ Bogota"
