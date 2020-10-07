@@ -2,11 +2,11 @@
 
 Solución al reto 01 de React
 
-Nombre:
-Usuario Platzi:
+Nombre: Alejandro Cantillo
+Usuario Platzi: alejocantillo95
 
 ## Reto:
-  - [ ] Primer problema
-  - [ ] Segundo problema
-  - [ ] Tercer problema
-  - [ ] Cuarto Problema (Opcional)
+  - [ok] Primer problema
+  - [ok] Segundo problema
+  - [ok] Tercer problema
+  - [ok] Cuarto Problema (Opcional)
