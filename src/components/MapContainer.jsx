@@ -41,7 +41,6 @@ class MapContainer extends Component {
 
   render() {
     const { showMap, dataUbication, activeMarker, showingInfoWindow, selectedPlace } = this.state;
-    console.log(`Variable ${showMap}`);
       return (
         <>
           <div className='style_button'><button onClick={this.mostrarMapa}>{showMap ? 'Ocultar Mapa' : 'Mostrar Mapa'}</button></div>
