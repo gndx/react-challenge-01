@@ -1,42 +1,77 @@
 import React, { Component } from 'react';
-import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
+import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
 
 class MapContainer extends Component {
   constructor(props){
 		super(props);
 		this.state = {
-			showMap: false,
+      showMap: false,
+      dataUbication: [],
+      showingInfoWindow: false,
+      activeMarker: {},
+      selectedPlace: {},
     };
+  }
+
+  componentDidMount() {
+  fetch('http://localhost:3000/locations')
+  .then(response => response.json())
+  .then(data => this.setState({dataUbication: data}));
   }
 
   mostrarMapa = () => {
     this.setState({showMap: !this.state.showMap});
   }
 
+  onMarkerClick = (props, marker, e) =>
+  this.setState({
+    selectedPlace: props,
+    activeMarker: marker,
+    showingInfoWindow: true
+  });
+
+  onMapClicked = (props) => {
+    if (props.showingInfoWindow) {
+      this.setState({
+        showingInfoWindow: false,
+        activeMarker: null
+      })
+    }
+  };
+
   render() {
-    const { showMap } = this.state;
+    const { showMap, dataUbication, activeMarker, showingInfoWindow, selectedPlace } = this.state;
     console.log(`Variable ${showMap}`);
       return (
         <>
-          <button onClick={this.mostrarMapa}>{showMap ? 'Ocultar Mapa' : 'Mostrar Mapa'}</button>
-          {showMap ? (
+          <div className='style_button'><button onClick={this.mostrarMapa}>{showMap ? 'Ocultar Mapa' : 'Mostrar Mapa'}</button></div>
+          {showMap && (
             <Map
               google={google}
               zoom={5}
               initialCenter={{ lat: 19.5943885, lng: -97.9526044 }}
             >
-              <Marker
-                position={{ lat: 19.4267261, lng: -99.1718706 }}
-              />
-              <Marker
-                position={{ lat: 4.6560716, lng: -74.0595918 }}
-                title="Platzi HQ Bogota"
-                name="SOMA"
-              />
+              {
+                dataUbication.map(item => (
+                  <Marker
+                    key={item.venueName}
+                    position={{ lat: item.venueLat, lng: item.venueLon }}
+                    title={item.venueName}
+                    onClick={this.onMarkerClick}
+                    name={item.venueName}
+                  />
+          ))
+              }
+              <InfoWindow
+                marker={activeMarker}
+                visible={showingInfoWindow}
+              >
+                <div>
+                  <h1>{selectedPlace.name}</h1>
+                </div>
+              </InfoWindow>
             </Map>
                 )
-            :
-            <h1>Nooo Existe</h1>
           }
         </>
           )
