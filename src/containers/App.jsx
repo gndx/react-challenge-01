@@ -1,13 +1,14 @@
 import React from 'react';
-import MapContainer from "../components/MapContainer";
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import Home from './Home';
 import '../styles/containers/App.styl';
 
-const App = () => {
-  return (
-    <div className="App">
-      <MapContainer />
-    </div>
-  )
-};
+const App = () => (
+  <BrowserRouter>
+    <Switch>
+      <Route path='/' component={Home} />
+    </Switch>
+  </BrowserRouter>
+)
 
 export default App;
