@@ -2,11 +2,11 @@
 
 Solución al reto 01 de React
 
-Nombre:
+Nombre: Adriana del Pilar Martinez Bautista
 Usuario Platzi:
 
 ## Reto:
-  - [ ] Primer problema
+  - [x] Primer problema
   - [ ] Segundo problema
   - [ ] Tercer problema
   - [ ] Cuarto Problema (Opcional)
