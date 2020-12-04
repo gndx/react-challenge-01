@@ -8,5 +8,5 @@ Usuario Platzi:
 ## Reto:
   - [x] Primer problema
   - [x] Segundo problema
-  - [ ] Tercer problema
+  - [x] Tercer problema
   - [ ] Cuarto Problema (Opcional)
